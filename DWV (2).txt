@@ -1,0 +1,13 @@
+from nltk.tokenize import RegexpTokenizer
+from nltk.probability import FreqDist
+from pdfminer.high_level import extract_text
+text=extract_text('2010.00462.pdf')
+tokenizer=RegexpTokenizer('\w+')
+tokens=tokenizer.tokenize(text)
+freqdist=FreqDist(tokens)
+long_freq_words= [words for words in tokens if len(words) > 5 and freqdist[words] > 20]
+long_freq_words
+FreqDist(long_freq_words).plot()
+
+from google.colab import files
+files.upload()
